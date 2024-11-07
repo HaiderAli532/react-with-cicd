@@ -20,7 +20,6 @@ jobs:
         # See supported Node.js release schedule at https://nodejs.org/en/about/releases/
 
     steps:
-    - uses: actions/checkout@v4
     - uses: ./.github/workflows/include-npm-steps.yml  # Call the reusable template
 
 # - name: Use Node.js ${{ matrix.node-version }}
