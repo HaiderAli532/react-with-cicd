@@ -10,7 +10,7 @@ on:
 
 jobs:
   call-node-basic-template:
-    uses: ./.github/workflows/templates/include-npm-steps.yml  # Call the reusable template
+    uses: ./.github/workflows/include-npm-steps.yml  # Call the reusable template
     with:
       node_version: '18'  # Optionally override the Node.js version
     secrets:
