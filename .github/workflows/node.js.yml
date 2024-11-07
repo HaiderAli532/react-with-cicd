@@ -13,6 +13,4 @@ jobs:
   call-node-basic-template:
     uses: ./.github/workflows/include-npm-steps.yml  # Call the reusable template
     with:
-      node_version: '18'  # Optionally override the Node.js version
-    secrets:
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}  # Pass the NPM_TOKEN secret
+      node_version: '16'  # Optionally override the Node.js version

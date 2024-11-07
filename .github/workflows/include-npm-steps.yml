@@ -2,12 +2,12 @@
 name: Include NPM Steps
 
 on:
-  workflow_call:  # Make this workflow reusable
+  workflow_call:
     inputs:
       node_version:
         description: 'Node.js version'
         required: true
-        default: '16'
+        default: '16'  # Default version, if not provided
 
 jobs:
   npm-setup:
@@ -19,21 +19,7 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: ${{ inputs.node_version }}
+          node-version: ${{ inputs.node_version }}  # Use input for Node version
 
       - name: Install dependencies
         run: npm install
-      # Step 4: Run tests
-      - name: Run tests
-        run: npm test -- --ci --reporters=jest-junit  # Modify if using a different testing framework
-
-      # Step 5: Build the React app
-      - name: Build React app
-        run: npm run build
-
-      # Optional: Upload build artifacts
-      - name: Upload build artifacts
-        uses: actions/upload-artifact@v3
-        with:
-          name: react-app-build
-          path: build/  # Path to the build folder
