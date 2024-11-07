@@ -1,25 +1,8 @@
-# .github/workflows/include-npm-steps.yml
-name: Include NPM Steps
-
-on:
-  workflow_call:
-    inputs:
-      node_version:
-        description: 'Node.js version'
-        required: true
-        default: '16'  # Default version, if not provided
-
-jobs:
-  npm-setup:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Node.js
-        uses: actions/setup-node@v3
-        with:
-          node-version: ${{ inputs.node_version }}  # Use input for Node version
-
-      - name: Install dependencies
-        run: npm install
+- name: Use Node.js ${{ matrix.node-version }}
+  uses: actions/setup-node@v4
+  with:
+    node-version: ${{ matrix.node-version }}
+    cache: 'npm'
+- run: npm ci
+- run: npm run build --if-present
+- run: npm test
