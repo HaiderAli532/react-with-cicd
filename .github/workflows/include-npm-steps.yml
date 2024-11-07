@@ -1,37 +1,28 @@
-# node-basic.yml - This is a reusable template
-
-name: Node.js CI for React App
+# .github/workflows/include-npm-steps.yml
+name: Include NPM Steps
 
 on:
-  workflow_call:
+  workflow_call:  # Make this workflow reusable
     inputs:
       node_version:
-        description: 'Node.js version to use'
-        required: false
+        description: 'Node.js version'
+        required: true
         default: '16'
-    secrets:
-      required:
-        - NPM_TOKEN  # Ensure you provide NPM_TOKEN for npm authentication
 
 jobs:
-  build:
-    runs-on: ubuntu-latest  # Runs on Ubuntu
-
+  npm-setup:
+    runs-on: ubuntu-latest
     steps:
-      # Step 1: Checkout the code
       - name: Checkout code
-        uses: actions/checkout@v3
+        uses: actions/checkout@v2
 
-      # Step 2: Set up Node.js
       - name: Set up Node.js
         uses: actions/setup-node@v3
         with:
           node-version: ${{ inputs.node_version }}
 
-      # Step 3: Install dependencies
       - name: Install dependencies
-        run: npm install  # Use `yarn install` if you're using Yarn
-
+        run: npm install
       # Step 4: Run tests
       - name: Run tests
         run: npm test -- --ci --reporters=jest-junit  # Modify if using a different testing framework

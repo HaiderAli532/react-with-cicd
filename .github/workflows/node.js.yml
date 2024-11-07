@@ -1,12 +1,13 @@
+# .github/workflows/node-ci.yml
 name: Node.js CI for React App
 
 on:
   push:
     branches:
-      - main  # Trigger on push to the `main` branch
+      - main
   pull_request:
     branches:
-      - main  # Trigger on pull request to the `main` branch
+      - main
 
 jobs:
   call-node-basic-template:
@@ -14,4 +15,4 @@ jobs:
     with:
       node_version: '18'  # Optionally override the Node.js version
     secrets:
-      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}  # Pass the NPM_TOKEN secret for authentication
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}  # Pass the NPM_TOKEN secret
