@@ -1,8 +1,48 @@
-- name: Use Node.js ${{ matrix.node-version }}
-  uses: actions/setup-node@v4
-  with:
-    node-version: ${{ matrix.node-version }}
-    cache: 'npm'
-- run: npm ci
-- run: npm run build --if-present
-- run: npm test
+# node-basic.yml - This is a reusable template
+
+name: Node.js CI for React App
+
+on:
+  workflow_call:
+    inputs:
+      node_version:
+        description: 'Node.js version to use'
+        required: false
+        default: '16'
+    secrets:
+      required:
+        - NPM_TOKEN  # Ensure you provide NPM_TOKEN for npm authentication
+
+jobs:
+  build:
+    runs-on: ubuntu-latest  # Runs on Ubuntu
+
+    steps:
+      # Step 1: Checkout the code
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: ${{ inputs.node_version }}
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install  # Use `yarn install` if you're using Yarn
+
+      # Step 4: Run tests
+      - name: Run tests
+        run: npm test -- --ci --reporters=jest-junit  # Modify if using a different testing framework
+
+      # Step 5: Build the React app
+      - name: Build React app
+        run: npm run build
+
+      # Optional: Upload build artifacts
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: react-app-build
+          path: build/  # Path to the build folder
