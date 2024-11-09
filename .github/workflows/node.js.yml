@@ -15,7 +15,11 @@ jobs:
       matrix:
         node-version: [18.x, 20.x, 22.x]
 
-    # Call reusable workflow directly at the job level
-    uses: HaiderAli532/react-with-cicd/.github/workflows/include-npm-steps.yml@main
-    with:
-      node-version: ${{ matrix.node-version }}
+    steps:
+      - uses: actions/checkout@v4
+
+      # Call reusable workflow as a step
+      - name: Call npm setup workflow
+        uses: HaiderAli532/react-with-cicd/.github/workflows/include-npm-steps.yml@main
+        with:
+          node-version: ${{ matrix.node-version }}
