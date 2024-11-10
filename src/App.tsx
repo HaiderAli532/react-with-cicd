@@ -16,7 +16,7 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          Learn to deploy app on vercel
         </a>
       </header>
       <h1>Hey! THis is my first project that I am automating</h1>
