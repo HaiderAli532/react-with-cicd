@@ -19,7 +19,7 @@ function App() {
           Learn React
         </a>
       </header>
-      <h1>Hey! THis is my first project that I am automating</h1>
+      <h1>Hey! Testing reusable workflow</h1>
     </div>
   );
 }
