@@ -13,4 +13,4 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - uses: HaiderAli532/react-with-cicd/.github/workflows/node.js.yml@v1  # Path to reusable workflow
+      - uses: react-with-cicd/.github/workflows/node.js.yml@main  # Path to reusable workflow
