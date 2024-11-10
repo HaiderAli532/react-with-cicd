@@ -1,23 +1,16 @@
-name: Node.js CI
+name: Main Workflow
 
 on:
+  # Customize these events as needed
   push:
-    branches: [ "main" ]
+    branches: [ main ]
   pull_request:
-    branches: [ "main" ]
+    branches: [ main ]
 
 jobs:
-  build:
+  node_ci:
     runs-on: ubuntu-latest
 
-    strategy:
-      matrix:
-        node-version: [18.x, 20.x, 22.x]
-
     steps:
-    - uses: actions/checkout@v4
-
-    - name: Call reusable Node.js setup workflow
-      uses: ./.github/workflows/node.js.yml
-      with:
-        node-version: ${{ matrix.node-version }}
+      - uses: actions/checkout@v4
+      - uses: ./.github/workflows/node.js.yml@v1  # Path to reusable workflow
