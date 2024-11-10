@@ -12,13 +12,4 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: ./node.js.yml@v1  # Path to reusable workflow (replace with actual path if different)
-        with:
-          node_version: 18.x
-          build_script: npm run build:prod  # Customized build script
-          test_script: npm run test:integration  # Customized test script
-
-      - uses: ./node.js.yml@v1  # Use for multiple Node.js versions (optional)
-        with:
-          node_version: 20.x
-          # Customize build_script and test_script if needed
+      - uses: ./node.js.yml@v1  # Path to reusable workflow
