@@ -1,4 +1,3 @@
-# .github/workflows/nodejs.yaml
 name: Node.js CI
 
 on:
@@ -16,10 +15,6 @@ jobs:
         node-version: [18.x, 20.x, 22.x]
 
     steps:
-    - uses: actions/checkout@v3
-
-    # Reusable workflow call (if using workflow_call)
-    - name: Call npm setup workflow
-    - uses: ./.github/workflows/include-npm-steps.yml
-    - with:
-        node-version: ${{ matrix.node-version }}
+      - uses: ./.github/workflows/include-npm-steps.yml@npm-setup
+        with:
+          node-version: ${{ matrix.node-version }}
