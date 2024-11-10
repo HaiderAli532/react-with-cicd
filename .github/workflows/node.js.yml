@@ -1,28 +1,22 @@
-name: Node.js CI (Reusable)
+name: Reusable Node.js Steps
 
 on:
-  # Customize these events as needed
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  workflow_call:
+    inputs:
+      node-version:
+        required: true
+        type: string
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
     steps:
-      - uses: actions/checkout@v4
-      - name: Use Node.js 18.x
+      - name: Use Node.js ${{ inputs.node-version }}
         uses: actions/setup-node@v4
         with:
-          node-version: 18.x
-          cache: 'npm'  # Enable npm cache
+          node-version: ${{ inputs.node-version }}
+          cache: 'npm'
 
-      - run: npm ci  # Install dependencies
-
-      - name: Build
-        run: npm run build --if-present
-
-      - name: Test
-        run: npm test
+      - run: npm ci
+      - run: npm run build --if-present
+      - run: npm test
