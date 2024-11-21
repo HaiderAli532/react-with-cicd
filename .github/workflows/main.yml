@@ -12,4 +12,5 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: ./node.js.yml@v1  # Path to reusable workflow
+      - uses: actions/checkout@v4
+      - uses: https://github.com/HaiderAli532/react-with-cicd/blob/main/.github/workflows/node.js.yml@main

@@ -1,11 +1,7 @@
-name: Node.js CI (Reusable)
+name: Reusable Node.js Steps
 
 on:
-  # Customize these events as needed
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  workflow_call:
 
 jobs:
   build:
